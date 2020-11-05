@@ -1,0 +1,301 @@
+<div class="player-detail">
+  <span class="back-btn" [routerLink]="['/players']">
+    &#8592; Back to list
+  </span>
+  <form *ngIf="!!player" [formGroup]="playerForm">
+    <div class="sub-header">
+      <span class="title">{{ isCreate ? "New" : "Edit" }} Player</span>
+      <div>
+        <button
+          mat-mini-fab
+          color="accent"
+          aria-label="Import"
+          (click)="exportJSON()"
+        >
+          <mat-icon>download</mat-icon>
+        </button>
+        <button
+          mat-mini-fab
+          color="accent"
+          aria-label="Export"
+          (click)="handleImportClick()"
+        >
+          <mat-icon>upload</mat-icon>
+        </button>
+        <input type="file" id="import" (change)="importJSON()" />
+      </div>
+    </div>
+
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input type="text" matInput formControlName="name" />
+      <div *ngIf="playerForm.get('name').hasError('required')">
+        <mat-error> Name is required </mat-error>
+      </div>
+    </mat-form-field>
+
+    <div class="content">
+      <div class="section">
+        <div class="title">
+          <span>Base Attributes</span>
+          <button
+            mat-mini-fab
+            color="accent"
+            aria-label="Edit Base Attributes"
+            (click)="toggleBaseAttrEditMode()"
+          >
+            <mat-icon>{{ isEditingBaseAttrs ? "check" : "edit" }}</mat-icon>
+          </button>
+        </div>
+        <div class="field">
+          <mat-form-field>
+            <mat-label>Strength</mat-label>
+            <input type="number" matInput formControlName="strength" />
+            <div *ngIf="playerForm.get('strength').hasError('required')">
+              <mat-error> Strength is required </mat-error>
+            </div>
+          </mat-form-field>
+        </div>
+
+        <div class="field">
+          <mat-form-field>
+            <mat-label>Dexterity</mat-label>
+            <input type="number" matInput formControlName="dexterity" />
+            <div *ngIf="playerForm.get('dexterity').hasError('required')">
+              <mat-error> Dexterity is required </mat-error>
+            </div>
+          </mat-form-field>
+        </div>
+
+        <div class="field">
+          <mat-form-field>
+            <mat-label>Mind</mat-label>
+            <input type="number" matInput formControlName="mind" />
+            <div *ngIf="playerForm.get('mind').hasError('required')">
+              <mat-error> Mind is required </mat-error>
+            </div>
+          </mat-form-field>
+        </div>
+
+        <div class="field">
+          <mat-form-field>
+            <mat-label>Presence</mat-label>
+            <input type="number" matInput formControlName="presence" />
+            <div *ngIf="playerForm.get('presence').hasError('required')">
+              <mat-error> Presence is required </mat-error>
+            </div>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="title">
+          <span>Combat Attributes</span>
+        </div>
+
+        <div class="field disabled">
+          <label>Vitality</label>
+          <span>{{ player.vitality }}</span>
+        </div>
+
+        <div class="field disabled">
+          <label>Evasion</label>
+          <span>{{ player.evasion }}</span>
+        </div>
+
+        <div class="field disabled">
+          <label>Armor</label>
+          <span>{{ player.armor }}</span>
+        </div>
+
+        <div class="field disabled">
+          <label>Alacrity</label>
+          <span>{{ player.alacrity }}</span>
+        </div>
+
+        <div class="field disabled">
+          <label>Tenacity</label>
+          <span>{{ player.tenacity }}</span>
+        </div>
+
+        <div class="field disabled">
+          <label>Power</label>
+          <span>{{ player.power }}</span>
+        </div>
+
+        <div class="field disabled stretched">
+          <div>
+            <label>Damage</label>
+            <span>{{ player.damage }}</span>
+          </div>
+          <button
+            mat-mini-fab
+            color="primary"
+            aria-label="Do Damage"
+            (click)="player.doDamage()"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="title">
+          <span>Skills</span>
+          <button
+            mat-mini-fab
+            color="accent"
+            aria-label="Edit Skills"
+            (click)="toggleSkillEditMode()"
+          >
+            <mat-icon>{{ isEditingBaseSkills ? "check" : "edit" }}</mat-icon>
+          </button>
+        </div>
+
+        <div class="field">
+          <app-skill-select
+            label="Fighting"
+            [control]="fighting"
+            [player]="player"
+          ></app-skill-select>
+        </div>
+
+        <div class="field">
+          <app-skill-select
+            label="Thievery"
+            [control]="thievery"
+            [player]="player"
+          ></app-skill-select>
+        </div>
+
+        <div class="field">
+          <app-skill-select
+            label="Stealth"
+            [control]="stealth"
+            [player]="player"
+          ></app-skill-select>
+        </div>
+
+        <div class="field">
+          <app-skill-select
+            label="Archery"
+            [control]="archery"
+            [player]="player"
+          ></app-skill-select>
+        </div>
+
+        <div class="field">
+          <app-skill-select
+            label="Learned"
+            [control]="learned"
+            [player]="player"
+          ></app-skill-select>
+        </div>
+
+        <div class="field">
+          <app-skill-select
+            label="Survival"
+            [control]="survival"
+            [player]="player"
+          ></app-skill-select>
+        </div>
+
+        <div class="field">
+          <app-skill-select
+            label="Perception"
+            [control]="perception"
+            [player]="player"
+          ></app-skill-select>
+        </div>
+
+        <div class="field">
+          <app-skill-select
+            label="Apothecary"
+            [control]="apothecary"
+            [player]="player"
+          ></app-skill-select>
+        </div>
+
+        <div class="field">
+          <app-skill-select
+            label="Intimidation"
+            [control]="intimidation"
+            [player]="player"
+          ></app-skill-select>
+        </div>
+
+        <div class="field">
+          <app-skill-select
+            label="Performance"
+            [control]="performance"
+            [player]="player"
+          ></app-skill-select>
+        </div>
+
+        <div class="field">
+          <app-skill-select
+            label="Manipulation"
+            [control]="manipulation"
+            [player]="player"
+          ></app-skill-select>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="title">
+          <span>Extended Attributes</span>
+          <button
+            mat-mini-fab
+            color="accent"
+            aria-label="Edit Skills"
+            (click)="toggleExtendedEditMode()"
+          >
+            <mat-icon>{{ isEditingExtendedAttrs ? "check" : "edit" }}</mat-icon>
+          </button>
+        </div>
+
+        <div class>
+          <div class="field">
+            <span class="title">Armor</span>
+            <mat-radio-group formControlName="armor">
+              <mat-radio-button
+                class="checkbox"
+                *ngFor="let option of armorOptions"
+                [value]="option.key"
+              >
+                {{ option.label }}
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <div class="field">
+            <span class="title">Weapons</span>
+            <mat-checkbox
+              class="checkbox"
+              *ngFor="let option of weaponOptions"
+              [checked]="player.weapons[option.key]"
+              (change)="onWeaponChange(option.key, $event)"
+              [disabled]="!isEditingExtendedAttrs"
+            >
+              {{ option.label }}
+            </mat-checkbox>
+          </div>
+
+          <div class="field">
+            <span class="title">Traits</span>
+            <mat-checkbox
+              class="checkbox"
+              *ngFor="let option of traitOptions"
+              [checked]="player.traits[option.key]"
+              (change)="onTraitChange(option.key, $event)"
+              [disabled]="!isEditingExtendedAttrs || !this.player.canUpdateTrait(option.key)"
+            >
+              {{ option.label }}
+            </mat-checkbox>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <span *ngIf="!player">Loading...</span>
+</div>

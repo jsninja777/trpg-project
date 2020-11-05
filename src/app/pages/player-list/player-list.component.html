@@ -1,0 +1,9 @@
+<div class="player-list">
+  <app-player-card
+    *ngFor="let player of players; let i = index"
+    [data]="player"
+  ></app-player-card>
+  <div class="btn-add" [routerLink]="['/players/new']">
+    &#8853;
+  </div>
+</div>

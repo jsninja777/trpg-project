@@ -1,0 +1,20 @@
+<div class="player-card" [routerLink]="[ '/players', data.id ]">
+  <img src="assets/images/avatar.png" class="avatar" />
+  <p class="name">{{ data.name }}</p>
+  <div class="section">
+    <span>Strength: </span>
+    <span>{{ data.strength }}</span>
+  </div>
+  <div class="section">
+    <span>Dexterity: </span>
+    <span>{{ data.dexterity }}</span>
+  </div>
+  <div class="section">
+    <span>Mind: </span>
+    <span>{{ data.mind }}</span>
+  </div>
+  <div class="section">
+    <span>Presence: </span>
+    <span>{{ data.presence }}</span>
+  </div>
+</div>

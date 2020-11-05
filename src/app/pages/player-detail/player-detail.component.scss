@@ -1,0 +1,82 @@
+.player-detail {
+  .back-btn {
+    position: absolute;
+    left: 20px;
+    cursor: pointer;
+  }
+
+  .sub-header {
+    display: flex;
+    margin-bottom: 30px;
+
+    span {
+      font-size: 32px;
+    }
+    button {
+      margin: 0 20px;
+    }
+    input {
+      display: none;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+
+    .section {
+      box-shadow: 0 0 20px 0 rgba(175, 175, 175, 0.8);
+      margin: 30px;
+      padding: 20px;
+      border-radius: 5px;
+      min-width: 260px;
+      flex: 1;
+
+      .title {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+
+        & > span {
+          font-size: 24px;
+        }
+      }
+    }
+
+    .field {
+      position: relative;
+
+      label {
+        font-size: 10px;
+      }
+      span {
+        display: block;
+        padding: 6px 0;
+      }
+      > button {
+        position: absolute;
+        right: -10px;
+        top: 0;
+      }
+      &.disabled {
+        margin-bottom: 10px;
+        color: rgba(0, 0, 0, 0.38);
+        border-color: internal-light-dark(
+          rgb(118, 118, 118),
+          rgb(133, 133, 133)
+        );
+        border-bottom: 1px dashed;
+      }
+      .title {
+        font-size: 18px;
+        margin-top: 10px;
+        margin-bottom: 0;
+      }
+      .checkbox {
+        padding: 10px;
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+.player-list {
+  display: flex;
+  // width: 100%;
+  flex-wrap: wrap;
+
+  .btn-add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style: dashed;
+    border-radius: 5px;
+    width: 200px;
+    margin: 30px;
+    font-size: 40px;
+    cursor: pointer;
+  }
+}

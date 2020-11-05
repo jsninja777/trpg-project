@@ -1,0 +1,27 @@
+.player-card {
+  width: 200px;
+  height: 300px;
+  background: white;
+  box-shadow: 0 0 20px 0 rgba(175,  175, 175, 0.8);
+  margin: 30px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+
+  .avatar {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin: 20px auto;
+  }
+  .name {
+    font-size: 20px;
+    text-align: center;
+  }
+  .section {
+    span:first-child {
+      font-weight: bold;
+    }
+  }
+}
